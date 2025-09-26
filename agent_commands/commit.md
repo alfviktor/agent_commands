@@ -31,7 +31,10 @@ You are tasked with creating git commits for the changes made during this sessio
 
    Example format:
    ```markdown
-   ## [Feature/Issue Title]
+   ## [Feature/Issue ON BRANCH Title]
+
+   ALWAYS MENTION WHICH BRANCH THIS COMMIT IS ON IN THE ISSUE
+
    @terragon-labs - [Brief description of what needs attention]
    
    ### Items to Address:

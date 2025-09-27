@@ -1,6 +1,6 @@
 # User Experience Research & Design Process
 
-You are tasked with analyzing user experience challenges and designing solutions through comprehensive codebase research and user journey simulation.
+You are tasked with analyzing user experience challenges and designing solutions through comprehensive codebase research, visual analysis, and user journey simulation.
 
 ## Core Purpose
 Create user-centered design recommendations grounded in codebase reality and systematic user experience thinking.
@@ -17,6 +17,8 @@ Create user-centered design recommendations grounded in codebase reality and sys
 **Create UX research tracking:**
 ```
 TodoWrite: UX Research for [feature/problem]:
+- [ ] Generate screenshots of current UI
+- [ ] Analyze visual interface
 - [ ] Map current user flow
 - [ ] Find existing UI patterns in codebase
 - [ ] Identify technical constraints
@@ -25,7 +27,38 @@ TodoWrite: UX Research for [feature/problem]:
 - [ ] Document edge cases from user perspective
 ```
 
-### 2. Research Current Implementation
+### 2. Visual Context Gathering
+
+**Generate screenshots for visual analysis:**
+
+Spawn a subagent to capture current UI:
+```
+Task: Screenshot Generation
+"Run the marketing screenshots script to capture current UI states:
+1. Execute: node scripts/marketing-screenshots.js
+2. Confirm screenshots generated in marketing/screenshots/
+3. Return list of generated screenshot files"
+```
+
+**After screenshots are generated:**
+- Read screenshot files from `marketing/screenshots/` directory
+- Analyze each screenshot for:
+  - Visual hierarchy
+  - Component placement
+  - Current interaction patterns
+  - Potential confusion points
+  - Accessibility issues visible in UI
+
+**Document visual findings:**
+```
+Visual Analysis of Current UI:
+- Screenshot: [filename] shows [what screen/state]
+  - Observations: [what works, what doesn't]
+  - User attention likely goes to: [element]
+  - Potential confusion: [specific UI element/flow]
+```
+
+### 3. Research Current Implementation
 
 **Spawn parallel research agents:**
 
@@ -53,144 +86,141 @@ Task 3 - Technical Constraint Researcher:
 - Existing state management"
 ```
 
-**Synthesize findings:**
-- Current UI components available
-- Existing interaction patterns to follow
-- Technical constraints that affect UX
-- Performance limitations to consider
+**Synthesize findings with visual context:**
+- Current UI components (matched to screenshots)
+- Visual patterns that work well
+- Visual elements causing friction
+- Technical constraints affecting visual design
 
-### 3. Simulate User Experience
+### 4. Simulate User Experience
 
-**Think through user journeys step-by-step:**
+**Think through user journeys with visual reference:**
 
 ```
 User Journey Simulation for [persona/user type]:
 
 1. User arrives at [entry point]
-   - What do they see first?
-   - What's their mental model?
-   - What are they trying to achieve?
+   Visual context from [screenshot.png]:
+   - First visual element noticed: [element]
+   - Visual hierarchy effectiveness: [analysis]
+   - Mental model alignment: [matches/conflicts]
 
 2. User attempts [primary action]
-   - Current experience: [what happens now]
-   - Pain points: [specific issues]
-   - Confusion points: [where users get stuck]
+   Current experience per [screenshot2.png]:
+   - Visual cues present: [what guides them]
+   - Visual friction points: [what confuses]
+   - Missing visual feedback: [what's needed]
 
-3. Edge cases:
-   - Error handling: [how errors appear]
-   - Empty states: [what users see with no data]
-   - Loading states: [wait time experience]
-   - Mobile experience: [responsive considerations]
+3. Edge cases (with screenshots where available):
+   - Error state visual: [how it appears]
+   - Empty state design: [current implementation]
+   - Loading visual feedback: [what users see]
+   - Mobile responsive issues: [from screenshots]
 ```
 
-**Document UX problems discovered:**
-- Cognitive load issues
-- Unclear navigation
-- Missing feedback
-- Inconsistent patterns
-- Accessibility gaps
+### 5. Design Recommendations
 
-### 4. Design Recommendations
-
-**Present UX solutions grounded in research:**
+**Present UX solutions grounded in visual analysis:**
 
 ```markdown
 # UX Design Recommendations: [Feature]
 
 ## User Problem
-[Clear description of user need and current pain points]
+[Clear description with reference to screenshot evidence]
+
+## Visual Analysis Summary
+Based on screenshots in `marketing/screenshots/`:
+- [screenshot1.png]: Current state shows [issue]
+- [screenshot2.png]: User flow reveals [friction point]
 
 ## Research Findings
 - Current implementation: [UI components at file:line]
-- Existing patterns: [similar UIs that work well]
-- Technical constraints: [what limits our options]
+- Visual patterns working well: [reference screenshot]
+- Visual improvements needed: [specific to screenshots]
 
 ## Proposed User Experience
 
-### Primary Flow Improvement
-**Current**: [User does X, sees Y, gets confused by Z]
-**Proposed**: [User does X, sees clear feedback Y, achieves goal Z]
+### Visual Hierarchy Improvements
+**Current** (see [screenshot.png]): 
+- [Element X] dominates but isn't primary action
+- [Element Y] is hidden despite importance
 
-**Implementation approach**:
-- Reuse [existing component] from [file:line]
-- Follow pattern from [successful feature]
-- Respect constraint of [technical limitation]
+**Proposed**: 
+- Emphasize [primary action] through [visual technique]
+- De-emphasize [secondary elements]
+- Add visual cues for [user guidance]
 
-### Visual Hierarchy
-[Describe what users should notice first, second, third]
+### Interaction Design Improvements
+Referencing current states from screenshots:
+- **Current hover state**: [barely visible in screenshot]
+- **Proposed hover**: [clear visual feedback]
+- **Current loading**: [no feedback seen in screenshots]
+- **Proposed loading**: [skeleton matching layout]
 
-### Interaction Design
-- **On hover**: [specific behavior]
-- **On click**: [what happens]
-- **Loading**: [how we communicate wait]
-- **Success**: [how we confirm action]
-- **Error**: [how we help recovery]
+### Specific Visual Fixes
+For issues identified in screenshots:
+1. [Screenshot X] shows [problem] → Fix with [solution]
+2. [Screenshot Y] lacks [element] → Add [improvement]
 
-### Edge Cases Handled
-- Empty state: [specific design]
-- Error state: [helpful message + action]
-- Loading state: [skeleton or spinner]
-- Mobile: [responsive approach]
+## Visual Mockup Notes
+Based on screenshot analysis, key visual changes:
+- Move [element] to [position] for better flow
+- Increase contrast on [component]
+- Add visual separator between [sections]
+- Implement consistent spacing per [pattern]
 
 ## What We're NOT Changing
-[UX elements that work well and should remain]
+Visual elements that work well (per screenshots):
+- [Element] provides clear feedback
+- [Pattern] matches user expectations
 
 ## Success Metrics
-- User can complete [task] in [fewer] steps
-- Reduced confusion at [specific point]
-- Clearer feedback for [action]
-- Improved accessibility score
+- Visual hierarchy guides users to [action] first
+- Reduced visual clutter in [screenshot area]
+- Clear visual feedback for all interactions
+- Improved contrast ratio for accessibility
 ```
 
-### 5. Validate & Iterate
+### 6. Validate & Iterate
 
-**Present findings for feedback:**
+**Present findings with visual evidence:**
 ```
-Based on my UX research and user journey simulation:
+Based on my analysis of [N] screenshots and UX research:
 
-Key Problems Found:
-- [Problem 1]: Users currently [struggle with X]
-- [Problem 2]: [Y] causes confusion because [reason]
+Key Visual Problems Found:
+- [Problem 1]: Screenshot [X] shows users see [issue]
+- [Problem 2]: Visual flow in [Y] causes [confusion]
 
-Proposed Solutions:
-- [Solution 1]: [How it addresses problem]
-- [Solution 2]: [Expected improvement]
+Proposed Visual Solutions:
+- [Solution 1]: Improve [element] visibility
+- [Solution 2]: Add visual feedback for [action]
 
-These recommendations follow existing patterns from [examples] and work within [constraints].
-
-What aspects should I explore further?
+Would you like me to:
+- Analyze additional UI states?
+- Generate more specific screenshots?
+- Focus on particular visual issues?
 ```
-
-**Be ready to:**
-- Simulate additional user scenarios
-- Research alternative patterns
-- Adjust based on business constraints
-- Consider technical feasibility
 
 ## Key Principles
 
-1. **User First, Code Second** - Understand user needs before diving into implementation
-2. **Evidence-Based UX** - Ground every recommendation in research and user behavior
-3. **Respect Constraints** - Design within technical and pattern reality
-4. **Simulate Thoroughly** - Think through every click, every state, every edge case
-5. **Progressive Enhancement** - Improve incrementally, don't redesign everything
+1. **See Before You Design** - Always analyze current visual state via screenshots
+2. **Visual Evidence** - Reference specific screenshots in recommendations
+3. **User First, Code Second** - Understand visual user needs before implementation
+4. **Evidence-Based UX** - Ground recommendations in visual analysis
+5. **Respect Visual Patterns** - Follow established visual language
 
-## Critical UX Thinking
+## Visual Analysis Guidelines
 
-**Always consider:**
-- What's the user's mental model?
-- What's the minimum cognitive load solution?
-- How does this fail gracefully?
-- Is this accessible to all users?
-- Does this follow established patterns?
-- Can users recover from mistakes?
+**When analyzing screenshots:**
+- What draws the eye first? Is it the right thing?
+- Where might users get visually lost?
+- Is the visual hierarchy supporting the user goal?
+- Are interactive elements visually distinct?
+- Do visual patterns remain consistent?
+- Is there sufficient contrast for accessibility?
 
-**Document everything:**
-- User assumptions you're making
-- Trade-offs between ideal and feasible
-- Why certain UX patterns were chosen
-- How this improves specific metrics
-
----
-
-This process ensures Zero One Labs creates user experiences that are both delightful and implementable, grounded in user research and codebase reality.
+**Document visual findings:**
+- Screenshot filename and what it captures
+- Specific visual problems identified
+- Current visual patterns that work
+- Visual improvements needed

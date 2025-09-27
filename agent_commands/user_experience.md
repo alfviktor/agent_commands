@@ -17,7 +17,7 @@ Create user-centered design recommendations grounded in codebase reality and sys
 **Create UX research tracking:**
 ```
 TodoWrite: UX Research for [feature/problem]:
-- [ ] Generate screenshots of current UI
+- [ ] Generate screenshots of current UI (MANDATORY)
 - [ ] Analyze visual interface
 - [ ] Map current user flow
 - [ ] Find existing UI patterns in codebase
@@ -27,200 +27,150 @@ TodoWrite: UX Research for [feature/problem]:
 - [ ] Document edge cases from user perspective
 ```
 
-### 2. Visual Context Gathering
+### 2. MANDATORY Visual Context Gathering
 
-**Generate screenshots for visual analysis:**
+**CRITICAL: You MUST spawn a subagent for screenshot generation before ANY UX analysis**
 
-Spawn a subagent to capture current UI:
 ```
-Task: Screenshot Generation
-"Run the marketing screenshots script to capture current UI states:
+DO NOT PROCEED WITHOUT COMPLETING THIS STEP:
+
+Spawn Screenshot Generation Subagent:
+"Your task is to generate screenshots of the current application UI:
 1. Execute: node scripts/marketing-screenshots.js
-2. Confirm screenshots generated in marketing/screenshots/
-3. Return list of generated screenshot files"
+2. Wait for completion
+3. Verify screenshots exist in marketing/screenshots/
+4. Return a list of all generated screenshot files
+5. If any errors occur, report them immediately
+
+You must complete this task before the main UX analysis can proceed."
 ```
 
-**After screenshots are generated:**
-- Read screenshot files from `marketing/screenshots/` directory
-- Analyze each screenshot for:
-  - Visual hierarchy
-  - Component placement
-  - Current interaction patterns
-  - Potential confusion points
-  - Accessibility issues visible in UI
+**WAIT for subagent completion, then:**
+1. Verify subagent successfully generated screenshots
+2. Read ALL screenshot files from `marketing/screenshots/`
+3. Create visual inventory:
+   ```
+   Visual Context Acquired:
+   ✓ Screenshots generated: [count] files
+   ✓ Screens captured: [list main screens/states]
+   ✓ Ready for visual analysis
+   ```
 
-**Document visual findings:**
-```
-Visual Analysis of Current UI:
-- Screenshot: [filename] shows [what screen/state]
-  - Observations: [what works, what doesn't]
-  - User attention likely goes to: [element]
-  - Potential confusion: [specific UI element/flow]
-```
+**If screenshots fail:** STOP and troubleshoot before continuing
 
 ### 3. Research Current Implementation
 
-**Spawn parallel research agents:**
+**ONLY after screenshots are confirmed, spawn three parallel research agents:**
 
 ```
 Task 1 - UI Pattern Finder:
-"Find existing UI components and patterns for [similar functionality]. Look for:
-- Component files and their usage
-- Styling patterns
-- Interaction patterns
-- Accessibility implementations"
+"With visual context from screenshots now available, find UI components for [functionality]..."
 
 Task 2 - User Flow Analyzer:
-"Trace the current user journey for [feature]. Map:
-- Entry points
-- Decision points
-- Error states
-- Success states
-Return specific component references"
+"Using screenshot evidence, trace the user journey for [feature]..."
 
 Task 3 - Technical Constraint Researcher:
-"Identify technical limitations affecting UX. Find:
-- API response times
-- Data structure constraints  
-- Performance considerations
-- Existing state management"
+"Considering visual limitations seen in screenshots, identify technical constraints..."
 ```
 
-**Synthesize findings with visual context:**
-- Current UI components (matched to screenshots)
-- Visual patterns that work well
-- Visual elements causing friction
-- Technical constraints affecting visual design
+**Synthesize findings WITH screenshot evidence:**
+- Match code components to visual elements in screenshots
+- Identify gaps between code and visual implementation
+- Note visual patterns that align with code patterns
 
-### 4. Simulate User Experience
+### 4. Visual-First User Journey Simulation
 
-**Think through user journeys with visual reference:**
+**REQUIREMENT: Every user journey step MUST reference specific screenshots**
 
 ```
 User Journey Simulation for [persona/user type]:
 
 1. User arrives at [entry point]
-   Visual context from [screenshot.png]:
-   - First visual element noticed: [element]
-   - Visual hierarchy effectiveness: [analysis]
-   - Mental model alignment: [matches/conflicts]
+   SCREENSHOT EVIDENCE: [filename.png]
+   - Visual analysis: [specific observations from screenshot]
+   - First impression: [what screenshot reveals about UX]
+   - Visual friction: [problems visible in screenshot]
 
 2. User attempts [primary action]
-   Current experience per [screenshot2.png]:
-   - Visual cues present: [what guides them]
-   - Visual friction points: [what confuses]
-   - Missing visual feedback: [what's needed]
+   SCREENSHOT EVIDENCE: [filename2.png]
+   - Current visual state: [describe from screenshot]
+   - Missing visual cues: [gaps identified in screenshot]
+   - Confusion points: [specific UI elements in screenshot]
 
-3. Edge cases (with screenshots where available):
-   - Error state visual: [how it appears]
-   - Empty state design: [current implementation]
-   - Loading visual feedback: [what users see]
-   - Mobile responsive issues: [from screenshots]
+[Continue for all journey steps WITH screenshot evidence]
 ```
 
-### 5. Design Recommendations
+### 5. Evidence-Based Design Recommendations
 
-**Present UX solutions grounded in visual analysis:**
+**Every recommendation MUST cite screenshot evidence:**
 
 ```markdown
 # UX Design Recommendations: [Feature]
 
-## User Problem
-[Clear description with reference to screenshot evidence]
+## Screenshot Analysis Summary
+Total screenshots analyzed: [N]
+Key screens evaluated: [list with filenames]
 
-## Visual Analysis Summary
-Based on screenshots in `marketing/screenshots/`:
-- [screenshot1.png]: Current state shows [issue]
-- [screenshot2.png]: User flow reveals [friction point]
+## Visual Problems Identified
 
-## Research Findings
-- Current implementation: [UI components at file:line]
-- Visual patterns working well: [reference screenshot]
-- Visual improvements needed: [specific to screenshots]
+### Problem 1: [Issue Name]
+**Screenshot Evidence**: [filename.png]
+**Visual Issue**: [Specific description of what screenshot shows]
+**User Impact**: [How this affects users]
 
-## Proposed User Experience
+### Problem 2: [Issue Name]
+**Screenshot Evidence**: [filename2.png]
+[Continue pattern...]
 
-### Visual Hierarchy Improvements
-**Current** (see [screenshot.png]): 
-- [Element X] dominates but isn't primary action
-- [Element Y] is hidden despite importance
+## Proposed Solutions
 
-**Proposed**: 
-- Emphasize [primary action] through [visual technique]
-- De-emphasize [secondary elements]
-- Add visual cues for [user guidance]
+### Solution 1: [Improvement Name]
+**Current State** (see [screenshot.png]):
+- [Specific visual element/issue from screenshot]
 
-### Interaction Design Improvements
-Referencing current states from screenshots:
-- **Current hover state**: [barely visible in screenshot]
-- **Proposed hover**: [clear visual feedback]
-- **Current loading**: [no feedback seen in screenshots]
-- **Proposed loading**: [skeleton matching layout]
+**Proposed Change**:
+- [Specific visual improvement]
+- Implementation: Reuse [component] from [file:line]
 
-### Specific Visual Fixes
-For issues identified in screenshots:
-1. [Screenshot X] shows [problem] → Fix with [solution]
-2. [Screenshot Y] lacks [element] → Add [improvement]
-
-## Visual Mockup Notes
-Based on screenshot analysis, key visual changes:
-- Move [element] to [position] for better flow
-- Increase contrast on [component]
-- Add visual separator between [sections]
-- Implement consistent spacing per [pattern]
-
-## What We're NOT Changing
-Visual elements that work well (per screenshots):
-- [Element] provides clear feedback
-- [Pattern] matches user expectations
-
-## Success Metrics
-- Visual hierarchy guides users to [action] first
-- Reduced visual clutter in [screenshot area]
-- Clear visual feedback for all interactions
-- Improved contrast ratio for accessibility
+[Continue for all solutions WITH screenshot backing]
 ```
 
-### 6. Validate & Iterate
+### 6. Validation Checklist
 
-**Present findings with visual evidence:**
-```
-Based on my analysis of [N] screenshots and UX research:
+Before presenting findings, verify:
+- [ ] Subagent successfully generated screenshots
+- [ ] All screenshots were read and analyzed
+- [ ] Every UX claim has screenshot evidence
+- [ ] Visual recommendations match code capabilities
+- [ ] No recommendations made without visual context
 
-Key Visual Problems Found:
-- [Problem 1]: Screenshot [X] shows users see [issue]
-- [Problem 2]: Visual flow in [Y] causes [confusion]
+## ENFORCEMENT RULES
 
-Proposed Visual Solutions:
-- [Solution 1]: Improve [element] visibility
-- [Solution 2]: Add visual feedback for [action]
+**The agent MUST NOT:**
+- Proceed without screenshot generation subagent
+- Make UX recommendations without screenshot evidence
+- Skip visual analysis due to time constraints
+- Assume UI states without seeing them
+- Continue if screenshot generation fails
 
-Would you like me to:
-- Analyze additional UI states?
-- Generate more specific screenshots?
-- Focus on particular visual issues?
-```
+**The agent MUST:**
+- Always spawn screenshot subagent FIRST
+- Wait for subagent completion before analysis
+- Reference specific screenshots for every claim
+- Treat visual evidence as mandatory, not optional
+- Stop and report if screenshots unavailable
 
-## Key Principles
+## Subagent Management
 
-1. **See Before You Design** - Always analyze current visual state via screenshots
-2. **Visual Evidence** - Reference specific screenshots in recommendations
-3. **User First, Code Second** - Understand visual user needs before implementation
-4. **Evidence-Based UX** - Ground recommendations in visual analysis
-5. **Respect Visual Patterns** - Follow established visual language
+**Proper subagent usage:**
+1. Spawn with clear, specific instructions
+2. Include error handling requirements
+3. Wait for completion signal
+4. Verify output before proceeding
+5. Use subagent results as foundation for analysis
 
-## Visual Analysis Guidelines
-
-**When analyzing screenshots:**
-- What draws the eye first? Is it the right thing?
-- Where might users get visually lost?
-- Is the visual hierarchy supporting the user goal?
-- Are interactive elements visually distinct?
-- Do visual patterns remain consistent?
-- Is there sufficient contrast for accessibility?
-
-**Document visual findings:**
-- Screenshot filename and what it captures
-- Specific visual problems identified
-- Current visual patterns that work
-- Visual improvements needed
+**If subagent fails:**
+- Do not attempt manual screenshot analysis
+- Report the specific failure to user
+- Ask for guidance on alternative approaches
+- Do not proceed with assumptions

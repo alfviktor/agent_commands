@@ -16,7 +16,7 @@ You are tasked with creating git commits for the changes made during this sessio
    - Use imperative mood in commit messages
    - Focus on why the changes were made, not just what
 
-3. **Evaluate need for follow-up issue:**
+3. **Evaluate need for follow-up issue:** (only make issue if clear next steps are needed)
    - Consider if there are:
      - Testing steps that need verification
      - Edge cases discovered but not addressed

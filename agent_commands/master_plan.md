@@ -48,7 +48,7 @@ Then wait for the user's input.
    - Use the **codebase-analyzer** agent to understand how the current implementation works
    - If relevant, use the **thoughts-locator** agent to find any existing thoughts documents about this feature
    - If a Linear ticket is mentioned, use the **linear-ticket-reader** agent to get full details
-
+   - Spin up a Context7 subagent that will query the available MCP server Context7 about documentation and information about the libraries or tools we are using. For example "Clerk NextJS", or "Base-ui dropdown"
    These agents will:
    - Find relevant source files, configs, and tests
    - Identify the specific directories to focus on
